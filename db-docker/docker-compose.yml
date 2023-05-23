@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+
+  mysql-development:
+    image: mysql:latest
+    environment:
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: fintech
+    ports:
+      - "3308:3306"
