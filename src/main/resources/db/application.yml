@@ -1,0 +1,6 @@
+spring:
+  liquibase:
+    url: jdbc:mysql://localhost:3308/fintech
+    driverClassName: com.mysql.cj.jdbc.Driver
+    user: root
+    password: 1234
