@@ -18,33 +18,7 @@ public class Account {
     @Column(name = "last_name")
     private String lastName;
 
-    public Long getIdentifier() {
-        return identifier;
-    }
 
-    public Long getPassportNumber() {
-        return passportNumber;
-    }
-
-    public BigDecimal getAnnualIncome() {
-        return annualIncome;
-    }
-
-    public BigDecimal getAvailableBalance() {
-        return availableBalance;
-    }
-
-    public BigDecimal getCreditBalance() {
-        return creditBalance;
-    }
-
-    public BigDecimal getDepositBalance() {
-        return depositBalance;
-    }
-
-    public BigDecimal getCreditLimit() {
-        return creditLimit;
-    }
 
     @Column(name = "identifier")
     private Long identifier;
@@ -85,7 +59,41 @@ public class Account {
     public String getLastName() {
         return lastName;
     }
+    public Long getIdentifier() {
+        return identifier;
+    }
 
+    public Long getPassportNumber() {
+        return passportNumber;
+    }
+
+    public BigDecimal getAnnualIncome() {
+        return annualIncome;
+    }
+
+    public BigDecimal getAvailableBalance() {
+        return availableBalance;
+    }
+
+    public BigDecimal getCreditBalance() {
+        return creditBalance;
+    }
+
+    public BigDecimal getDepositBalance() {
+        return depositBalance;
+    }
+
+    public void setAnnualIncome(BigDecimal annualIncome) {
+        this.annualIncome = annualIncome;
+    }
+
+    public void setAvailableBalance(BigDecimal availableBalance) {
+        this.availableBalance = availableBalance;
+    }
+
+    public BigDecimal getCreditLimit() {
+        return creditLimit;
+    }
     public Account(String firstName, String lastName, Long identifier, Long passportNumber, BigDecimal annualIncome, BigDecimal depositBalance) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -125,6 +133,18 @@ public class Account {
 
     public void setPassportNumber(Long passportNumber) {
         this.passportNumber = passportNumber;
+    }
+
+    public void setCreditBalance(BigDecimal creditBalance) {
+        this.creditBalance = creditBalance;
+    }
+
+    public void setDepositBalance(BigDecimal depositBalance) {
+        this.depositBalance = depositBalance;
+    }
+
+    public void setCreditLimit(BigDecimal creditLimit) {
+        this.creditLimit = creditLimit;
     }
 
     @Override

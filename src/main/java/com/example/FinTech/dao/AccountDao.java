@@ -7,8 +7,9 @@ import java.util.List;
 public interface AccountDao {
     Account save(Account theAccount);
     List<Account> findAll();
-    Account findById(int theId);
-    void deleteById(int theId);
+    Account findById(Long theId);
+    void deleteById(Long theId);
+    Account update(Account theAccount);
 
 
 }

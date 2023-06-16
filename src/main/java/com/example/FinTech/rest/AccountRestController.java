@@ -4,6 +4,7 @@ import com.example.FinTech.entity.Account;
 import com.example.FinTech.service.AccountService;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -22,7 +23,7 @@ public class AccountRestController {
     }
 
     @GetMapping("accounts/{accountId}")
-    public Account findById(@PathVariable int accountId){
+    public Account findById(@PathVariable Long accountId){
         Account theAccount = accountService.findById(accountId);
 
         if (theAccount == null){
@@ -33,8 +34,21 @@ public class AccountRestController {
 
     @PostMapping("/accounts")
     public Account addAccount(@RequestBody Account theAccount){
-        theAccount.setId(0L);
+        accountService.checkPassportId(theAccount);
+        accountService.checkIdentifierNumber(theAccount);
         Account dbAccount = accountService.save(theAccount);
+        return dbAccount;
+    }
+
+    @PutMapping("/accounts")
+    public Account updateAccount(@RequestBody Account theAccount){
+        Account dbAccount = accountService.update(theAccount);
+        return dbAccount;
+    }
+
+    @PutMapping("/accounts/{accountId}")
+    public Account updateCreditLimit(@PathVariable Long accountId, @RequestBody int creditLimit){
+        Account dbAccount = accountService.upCreditLimit(accountId, creditLimit);
         return dbAccount;
     }
 

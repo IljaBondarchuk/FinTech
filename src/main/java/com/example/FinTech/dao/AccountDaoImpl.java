@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Repository
@@ -29,7 +30,7 @@ public class AccountDaoImpl implements AccountDao {
     }
 
     @Override
-    public Account findById(int theId) {
+    public Account findById(Long theId) {
         Account theAccount = entityManager.find(Account.class,theId);
         return theAccount;
     }
@@ -41,8 +42,15 @@ public class AccountDaoImpl implements AccountDao {
     }
 
     @Override
-    public void deleteById(int theId) {
+    public void deleteById(Long theId) {
         Account theAccount = entityManager.find(Account.class, theId);
         entityManager.remove(theAccount);
+    }
+
+    @Override
+    public Account update(Account theAccount) {
+        Account account = new Account();
+        
+        return null;
     }
 }
