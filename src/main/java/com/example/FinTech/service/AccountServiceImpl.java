@@ -62,14 +62,15 @@ public class AccountServiceImpl implements AccountService{
         return true;
     }
 
+    @Transactional
     @Override
-    public Account upCreditLimit(Long id, int requestedCreditLimit) {
+    public Account upCreditLimit(Long id, BigDecimal requestedCreditLimit) {
         Account account = accountDao.findById(id);
-        if ((BigDecimal.valueOf(requestedCreditLimit).compareTo(account.getAnnualIncome().divide(BigDecimal.valueOf(12)))) > 0){
+        if ((requestedCreditLimit.compareTo(account.getAnnualIncome().divide(BigDecimal.valueOf(12)))) > 0){
             System.out.println("You have low annual income. Increase your income and try again later");
             return account;
         }
-        account.setCreditLimit(BigDecimal.valueOf(requestedCreditLimit));
+        account.setCreditLimit(requestedCreditLimit);
         Account dbAccount = accountDao.save(account);
         return dbAccount;
     }

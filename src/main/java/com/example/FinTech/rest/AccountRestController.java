@@ -47,8 +47,8 @@ public class AccountRestController {
     }
 
     @PutMapping("/accounts/{accountId}")
-    public Account updateCreditLimit(@PathVariable Long accountId, @RequestBody int creditLimit){
-        Account dbAccount = accountService.upCreditLimit(accountId, creditLimit);
+    public Account updateCreditLimit(@PathVariable Long accountId, @RequestBody Account account){
+        Account dbAccount = accountService.upCreditLimit(accountId, account.getCreditLimit());
         return dbAccount;
     }
 

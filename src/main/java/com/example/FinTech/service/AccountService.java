@@ -2,6 +2,7 @@ package com.example.FinTech.service;
 
 import com.example.FinTech.entity.Account;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface AccountService {
@@ -13,5 +14,5 @@ public interface AccountService {
     Account update(Account theAccount);
     boolean checkPassportId (Account theAccount);
     boolean checkIdentifierNumber(Account theAccount);
-    Account upCreditLimit(Long id, int requestedCreditLimit);
+    Account upCreditLimit(Long id, BigDecimal requestedCreditLimit);
 }
