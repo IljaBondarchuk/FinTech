@@ -34,10 +34,13 @@ public class AccountRestController {
 
     @PostMapping("/accounts")
     public Account addAccount(@RequestBody Account theAccount){
-        accountService.checkPassportId(theAccount);
-        accountService.checkIdentifierNumber(theAccount);
-        Account dbAccount = accountService.save(theAccount);
-        return dbAccount;
+        if (accountService.checkPassportId(theAccount) || accountService.checkIdentifierNumber(theAccount)){
+            Account dbAccount = accountService.save(theAccount);
+            return dbAccount;
+        } else {
+            System.out.println("Duplicating values");
+            return null;
+        }
     }
 
     @PutMapping("/accounts")

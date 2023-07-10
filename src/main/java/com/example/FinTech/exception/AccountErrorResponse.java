@@ -1,4 +1,4 @@
-package com.example.FinTech.rest;
+package com.example.FinTech.exception;
 
 public class AccountErrorResponse {
     private int status;

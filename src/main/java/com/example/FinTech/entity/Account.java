@@ -1,16 +1,23 @@
 package com.example.FinTech.entity;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.math.BigDecimal;
 
+@Setter
+@Getter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Entity
 @Table(name="Account")
 public class Account {
 
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "first_name")
@@ -35,8 +42,6 @@ public class Account {
     @Column(name = "credit_limit")
     private BigDecimal creditLimit;
 
-    public Account(){
-    }
     public Account(Long id, String firstName, String lastName){
         this.id = id;
         this.firstName = firstName;
@@ -48,52 +53,6 @@ public class Account {
         this.lastName = lastName;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-    public Long getIdentifier() {
-        return identifier;
-    }
-
-    public Long getPassportNumber() {
-        return passportNumber;
-    }
-
-    public BigDecimal getAnnualIncome() {
-        return annualIncome;
-    }
-
-    public BigDecimal getAvailableBalance() {
-        return availableBalance;
-    }
-
-    public BigDecimal getCreditBalance() {
-        return creditBalance;
-    }
-
-    public BigDecimal getDepositBalance() {
-        return depositBalance;
-    }
-
-    public void setAnnualIncome(BigDecimal annualIncome) {
-        this.annualIncome = annualIncome;
-    }
-
-    public void setAvailableBalance(BigDecimal availableBalance) {
-        this.availableBalance = availableBalance;
-    }
-
-    public BigDecimal getCreditLimit() {
-        return creditLimit;
-    }
     public Account(String firstName, String lastName, Long identifier, Long passportNumber, BigDecimal annualIncome, BigDecimal depositBalance) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -113,38 +72,6 @@ public class Account {
         this.availableBalance = BigDecimal.valueOf(0);
         this.creditBalance = BigDecimal.valueOf(0);
         this.creditLimit = BigDecimal.valueOf(0);
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public void setIdentifier(Long identifier) {
-        this.identifier = identifier;
-    }
-
-    public void setPassportNumber(Long passportNumber) {
-        this.passportNumber = passportNumber;
-    }
-
-    public void setCreditBalance(BigDecimal creditBalance) {
-        this.creditBalance = creditBalance;
-    }
-
-    public void setDepositBalance(BigDecimal depositBalance) {
-        this.depositBalance = depositBalance;
-    }
-
-    public void setCreditLimit(BigDecimal creditLimit) {
-        this.creditLimit = creditLimit;
     }
 
     @Override

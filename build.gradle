@@ -22,10 +22,6 @@ repositories {
 	mavenCentral()
 }
 
-ext {
-	mapstructVersion = "1.5.5.Final"
-	lombokMapstructBindingVersion = "0.2.0"
-}
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
@@ -33,16 +29,18 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'net.lbruun.springboot:preliquibase-spring-boot-starter:1.4.0'
 	implementation 'org.liquibase:liquibase-core'
-	implementation "org.mapstruct:mapstruct:${mapstructVersion}"
+	implementation "org.mapstruct:mapstruct:1.5.5.Final"
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 	annotationProcessor 'org.projectlombok:lombok'
-	annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}", "org.projectlombok:lombok-mapstruct-binding:${lombokMapstructBindingVersion}"
+	annotationProcessor "org.mapstruct:mapstruct-processor:1.5.5.Final", "org.projectlombok:lombok-mapstruct-binding:0.2.0"
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.mockito:mockito-core'
 	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
 	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
+	testImplementation 'org.testcontainers:junit-jupiter:1.18.3'
+	testImplementation 'org.testcontainers:mysql:1.17.6'
 }
 
 tasks.named('test') {
@@ -73,7 +71,7 @@ test.finalizedBy jacocoTestReport
 liquibase {
 	activities {
 		main {
-			changeLogFile 'changelog.xml'
+			changeLogFile 'changelog-master.xml'
 			url 'jdbc:mysql://localhost:3308/fintech'
 			username 'root'
 			password '1234'
