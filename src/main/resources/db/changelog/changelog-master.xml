@@ -8,7 +8,6 @@
       http://www.liquibase.org/xml/ns/pro
       http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
   <!--  <includeAll path="src/main/resources/db/changelog/changes"/> -->
-    <include file="/db/changelog/changes/create-person-table-changelog-1.xml"/>
-    <include file="/db/changelog/changes/insert-person-table-changelog-2.xml"/>
-    <include file="/db/changelog/changes/update-person-table-precondition-3.xml"/>
+    <include file="/db/changelog/changes/create-account-table-changelog-1.sql"/>
+    <include file="/db/changelog/changes/insert-account-table-changelog-2.sql"/>
 </databaseChangeLog>
