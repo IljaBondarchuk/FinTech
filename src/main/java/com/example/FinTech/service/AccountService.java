@@ -12,7 +12,5 @@ public interface AccountService {
     Account findById(Long theId);
     void deleteById(Long theId);
     Account update(Account theAccount);
-    boolean checkPassportId (Account theAccount);
-    boolean checkIdentifierNumber(Account theAccount);
     Account upCreditLimit(Long id, BigDecimal requestedCreditLimit);
 }
