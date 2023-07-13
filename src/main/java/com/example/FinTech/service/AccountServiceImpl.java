@@ -1,6 +1,7 @@
 package com.example.FinTech.service;
 
 import com.example.FinTech.exception.AccountNotFoundException;
+import com.example.FinTech.exception.DuplicateDataException;
 import com.example.FinTech.repository.AccountRepository;
 import com.example.FinTech.entity.Account;
 import jakarta.persistence.EntityNotFoundException;
@@ -24,10 +25,23 @@ public class AccountServiceImpl implements AccountService{
 
     @Transactional
     @Override
-    public Account save(Account theAccount) {
+    public Account save(Account theAccount) throws AccountNotFoundException {
         theAccount.setCreditBalance(BigDecimal.ZERO);
         theAccount.setAvailableBalance(BigDecimal.ZERO);
+        validatePassportNumber(theAccount);
+        validateIdentifier(theAccount);
         return accountRepository.save(theAccount);
+    }
+
+    private void validatePassportNumber(Account theAccount){
+        if (accountRepository.existsByPassportNumber(theAccount.getPassportNumber())) {
+            throw new DuplicateDataException("Duplicate Identifier Number " + theAccount.getIdentifier());
+        }
+    }
+    private void validateIdentifier(Account theAccount){
+        if (accountRepository.existsByIdentifier(theAccount.getIdentifier())) {
+            throw new DuplicateDataException("Duplicate Passport Id " + theAccount.getPassportNumber());
+        }
     }
 
     @Transactional
@@ -39,23 +53,6 @@ public class AccountServiceImpl implements AccountService{
         return dbAccount;
     }
 
-    @Override
-    public boolean checkPassportId(Account theAccount) {
-        Set<Long> uniquePassports = accountRepository.getPassports();
-        if (theAccount.getPassportNumber() != null){
-            return  !uniquePassports.contains(theAccount.getPassportNumber());
-        }
-        return false;
-    }
-
-    @Override
-    public boolean checkIdentifierNumber(Account theAccount) {
-        Set<Long> uniqueIdentifiers = accountRepository.getIdentifiers();
-        if (theAccount.getIdentifier() != null){
-        return  !uniqueIdentifiers.contains(theAccount.getIdentifier());
-        }
-        return false;
-    }
 
     @Transactional
     @Override
